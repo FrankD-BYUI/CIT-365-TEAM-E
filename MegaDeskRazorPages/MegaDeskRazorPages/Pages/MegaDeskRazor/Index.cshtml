@@ -22,37 +22,41 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MegaDesk[0].WidthDesk)
+                @Html.DisplayNameFor(model => model.MegaDesks[0].WidthDesk)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MegaDesk[0].DepthDesk)
+                @Html.DisplayNameFor(model => model.MegaDesks[0].DepthDesk)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MegaDesk[0].SizeDesk)
+                @Html.DisplayNameFor(model => model.MegaDesks[0].SizeDesk)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MegaDesk[0].Drawers)
+                @Html.DisplayNameFor(model => model.MegaDesks[0].Drawers)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MegaDesk[0].Material)
+                @Html.DisplayNameFor(model => model.MegaDesks[0].Material)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MegaDesk[0].CustomerName)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                    @Html.DisplayNameFor(model => model.MegaDesks[0].CustomerName)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MegaDesk[0].RushDays)
+                @Html.DisplayNameFor(model => model.MegaDesks[0].RushDays)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MegaDesk[0].QuoteDate)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
+                    @Html.DisplayNameFor(model => model.MegaDesks[0].QuoteDate)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MegaDesk[0].TotalCost)
+                @Html.DisplayNameFor(model => model.MegaDesks[0].TotalCost)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.MegaDesk) {
+@foreach (var item in Model.MegaDesks) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.WidthDesk)

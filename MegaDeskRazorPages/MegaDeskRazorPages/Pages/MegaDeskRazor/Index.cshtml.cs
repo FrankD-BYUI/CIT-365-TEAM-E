@@ -19,22 +19,46 @@ namespace MegaDeskRazorPages.Pages.MegaDeskRazor
             _context = context;
         }
 
-        public IList<MegaDesk> MegaDesk { get;set; }
+        public IList<MegaDesk> MegaDesks { get;set; }
 
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
 
-      
-        public async Task OnGetAsync()
+        public string NameSort { get; set; }
+        public string DateSort { get; set; }
+        public string CurrentSort { get; set; }
+
+
+        public async Task OnGetAsync(string sortOrder, string searchString)
         {
-            var movies = from m in _context.MegaDesk
-                         select m;
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+
+            IQueryable<MegaDesk> megaDeskIQ = from s in _context.MegaDesk
+                                            select s;
+
             if (!string.IsNullOrEmpty(SearchString))
             {
-                movies = movies.Where(s => s.CustomerName.Contains(SearchString));
+                megaDeskIQ = megaDeskIQ.Where(s => s.CustomerName.Contains(SearchString));
+            }
+            
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    megaDeskIQ = megaDeskIQ.OrderByDescending(s => s.CustomerName);
+                    break;
+                case "Date":
+                    megaDeskIQ = megaDeskIQ.OrderBy(s => s.QuoteDate);
+                    break;
+                case "date_desc":
+                    megaDeskIQ = megaDeskIQ.OrderByDescending(s => s.QuoteDate);
+                    break;
+                default:
+                    megaDeskIQ = megaDeskIQ.OrderBy(s => s.CustomerName);
+                    break;
             }
 
-            MegaDesk = await movies.ToListAsync();
+            MegaDesks = await megaDeskIQ.AsNoTracking().ToListAsync();
         }
     }
 }

@@ -1,0 +1,92 @@
+﻿@page
+@model MegaDeskRazorPages.Pages.MegaDeskRazor.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<form>
+    <p>
+        Search by Costumer Name: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MegaDesk[0].WidthDesk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MegaDesk[0].DepthDesk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MegaDesk[0].SizeDesk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MegaDesk[0].Drawers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MegaDesk[0].Material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MegaDesk[0].CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MegaDesk[0].RushDays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MegaDesk[0].QuoteDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MegaDesk[0].TotalCost)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.MegaDesk) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WidthDesk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepthDesk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SizeDesk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Drawers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Material)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RushDays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuoteDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalCost)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

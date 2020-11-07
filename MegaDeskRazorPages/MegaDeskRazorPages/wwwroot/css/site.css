@@ -1,8 +1,12 @@
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification 
 for details on configuring this project to bundle and minify static web assets. */
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@900&family=Raleway:wght@300&display=swap');
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: black;
+    color: white;
+    font-family: 'Raleway', sans-serif;
 }
 
 /* Wrapping element */
@@ -28,6 +32,18 @@ body {
     margin: 15px;
 }
 
+h1, h2, h3, h4 {
+    font-family: 'Alegreya', serif;
+}
+
+a {
+    color: indianred;
+    font-weight:bold;
+}
+.btn{
+    background-color:indianred;
+    color:black;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

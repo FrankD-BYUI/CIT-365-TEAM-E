@@ -47,7 +47,7 @@ namespace MegaDeskRazorPages.Pages.Models
 
         [Required]
         [Display(Name = "Customer Name")]
-        [Range(1, 30, ErrorMessage = "Name must be between 1 and 30 characters.")]
+        [StringLength(30, ErrorMessage = "Name input has too many characters.")]
         public string CustomerName { get; set; }
 
         [Required]

@@ -26,6 +26,7 @@ namespace MegaDeskRazorPages.Pages.MegaDeskRazor
 
         [BindProperty]
         public MegaDesk MegaDesk { get; set; }
+        
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

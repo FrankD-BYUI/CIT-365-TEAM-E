@@ -4,22 +4,36 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MegaDeskRazorPages.Pages.Models;
 
 namespace MegaDeskRazorPages.Pages.Models
 {
+
     public class MegaDesk
     {
        
-        private int myOverage;
-        public int size;
 
-        public void setSizeOverage(int mySize)
+        public static int drawersCost;
+        public static int materialCost;
+        public static int sizeCost;
+        public static int myOverage;
+        public static string rushDays;
+        public static string rushCost;
+        public static string[,] priceRush = new string[3, 3];
+
+
+
+        public static int DRAWER_PRICE = 50;
+        public const int BASE_DESK_PRICE = 200;
+        public const int BASE_SIZE_INCL = 1000;
+        public const int DESKTOP_SURFACE_AREA = 1;
+        public enum DesktopMaterial
         {
-            if (mySize > 1000)
-                this.myOverage = mySize - 1000;
-            else
-                this.myOverage = 0;
+            Select,
+            Oak = 200,
+            Laminate = 100,
+            Pine = 50,
+            Rosewood = 300,
+            Veneer = 125
         }
 
         public int ID { get; set; }
@@ -34,10 +48,16 @@ namespace MegaDeskRazorPages.Pages.Models
         [Display(Name = "Depth")]
         public int DepthDesk { get; set; }
 
+
+        private int _size;
         [Display(Name = "Size")]
-        public int SizeDesk
-        {
-            get => size; set { size = WidthDesk * DepthDesk; }
+        public int SizeDesk { 
+            get {
+                return _size;
+            }
+            set {
+                _size = DepthDesk * WidthDesk;
+            }
         }
 
         [Required]
@@ -55,35 +75,65 @@ namespace MegaDeskRazorPages.Pages.Models
         [Display(Name = "Rush Days")]
         public string RushDays { get; set; }
 
+
+        private DateTime _date;
+
         [Required]
         [Display(Name = "Quote Date")]
         [DataType(DataType.Date)]
-        public DateTime QuoteDate { get; set; }
-
-        [Display(Name = "Total Cost")]
-
-        public int Calc_Total_Cost()
+        public DateTime QuoteDate
         {
-            int sizeCost, basePrice, numDrawers, matCost, shippingCos;
-            DeskQuote MyDeskQuote = new DeskQuote();
-            sizeCost = MyDeskQuote.getSizeCost(size);
-            basePrice = Desk.BASE_DESK_PRICE;
-            numDrawers = MyDeskQuote.getDrawersCost(Drawers);
-            Console.WriteLine(sizeCost);
-            matCost = MyDeskQuote.getCostMaterial(Material);
-            shippingCos = MyDeskQuote.getRushCost(size, RushDays);
-            return sizeCost + basePrice + numDrawers + matCost + shippingCos;
-        }
-
-        public int TotalCost 
-        { 
-            get => Calc_Total_Cost();
+            get
+            {
+                return _date;
+            }
             set
             {
-                Calc_Total_Cost();
-            } 
+                _date = DateTime.Now;
+
+            }
         }
 
+        private int _total;
+        [Display(Name = "Total Cost")]
+        public int TotalCost
+        {
+            get
+            {
+                return MegaDesk.BASE_DESK_PRICE + GetDrawersCost(Drawers) + getCostMaterial(Material) + getSizeCost(SizeDesk);
+            }
+        }
+        public int GetDrawersCost(int drawers)
+        {
+            MegaDesk.drawersCost = drawers * MegaDesk.DRAWER_PRICE;
+            return MegaDesk.drawersCost;
+        }
+        public int getCostMaterial(string myMaterial)
+        {
+            MegaDesk.materialCost = (int)Enum.Parse(typeof(DesktopMaterial), myMaterial);
+            return MegaDesk.materialCost;
+        }
+        public void setSizeOverage(int mySize)
+        {
+            if (mySize > 1000)
+                MegaDesk.myOverage = mySize - 1000;
+            else
+                MegaDesk.myOverage = 0;
+        }
 
+        public int getSizeOverage()
+        {
+            return MegaDesk.myOverage;
+        }
+        public int getSizeCost(int mySize)
+        {
+            if (mySize > 1000)
+                MegaDesk.sizeCost = MegaDesk.myOverage * Desk.DESKTOP_SURFACE_AREA;
+            else
+                MegaDesk.sizeCost = 0;
+            return MegaDesk.sizeCost;
+        }
+        
     }
+    
 }

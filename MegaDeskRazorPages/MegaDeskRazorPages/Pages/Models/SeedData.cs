@@ -33,7 +33,6 @@ namespace MegaDeskRazorPages.Pages.Models
                         Drawers = 4,
                         Material = "Veneer",
                         QuoteDate = DateTime.Parse("1989-2-12"),
-                        TotalCost = 1945
                     },
 
                     new MegaDesk
@@ -46,7 +45,6 @@ namespace MegaDeskRazorPages.Pages.Models
                         Drawers = 2,
                         Material = "Laminate",
                         QuoteDate = DateTime.Parse("2020-10-17"),
-                        TotalCost = 1386
                     },
 
                     new MegaDesk
@@ -59,7 +57,6 @@ namespace MegaDeskRazorPages.Pages.Models
                         Drawers = 1,
                         Material = "Pine",
                         QuoteDate = DateTime.Parse("2020-10-17"),
-                        TotalCost = 1306
                     },
 
                     new MegaDesk
@@ -72,7 +69,6 @@ namespace MegaDeskRazorPages.Pages.Models
                         Drawers = 5,
                         Material = "Oak",
                         QuoteDate = DateTime.Parse("2020-10-17"),
-                        TotalCost = 1636
                     },
 
 
@@ -86,7 +82,6 @@ namespace MegaDeskRazorPages.Pages.Models
                         Drawers = 7,
                         Material = "Oak",
                         QuoteDate = DateTime.Parse("2020-10-17"),
-                        TotalCost = 2195
                     }
 
                 );

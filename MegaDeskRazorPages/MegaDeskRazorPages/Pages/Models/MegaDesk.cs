@@ -23,9 +23,13 @@ namespace MegaDeskRazorPages.Pages.Models
 
         public int ID { get; set; }
 
+        [Required]
+        [Range(24, 96, ErrorMessage = "Width must be between 24 and 96.")]
         [Display(Name = "Width")]
         public int WidthDesk { get; set; }
 
+        [Required]
+        [Range(12, 48, ErrorMessage = "Depth must be between 12 and 48.")]
         [Display(Name = "Depth")]
         public int DepthDesk { get; set; }
 
@@ -35,16 +39,22 @@ namespace MegaDeskRazorPages.Pages.Models
             get => size; set { size = WidthDesk * DepthDesk; }
         }
 
+        [Required]
         public int Drawers { get; set; }
 
+        [Required]
         public string Material { get; set; }
 
+        [Required]
         [Display(Name = "Customer Name")]
+        [Range(1, 30, ErrorMessage = "Name must be between 1 and 30 characters.")]
         public string CustomerName { get; set; }
 
+        [Required]
         [Display(Name = "Rush Days")]
         public string RushDays { get; set; }
 
+        [Required]
         [Display(Name = "Quote Date")]
         [DataType(DataType.Date)]
         public DateTime QuoteDate { get; set; }

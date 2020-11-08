@@ -25,7 +25,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="MegaDesk.Drawers" class="control-label"></label>
-                <input asp-for="MegaDesk.Drawers" class="form-control" />
+                <select asp-for="MegaDesk.Drawers" class="form-control">
+                    <option value=0>0</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                    <option value=6>6</option>
+                    <option value=7>7</option>
+                </select>
                 <span asp-validation-for="MegaDesk.Drawers" class="text-danger"></span>
             </div>
             <div class="form-group">

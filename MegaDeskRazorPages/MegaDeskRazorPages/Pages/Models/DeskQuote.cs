@@ -70,7 +70,8 @@ namespace MegaDeskRazorPages.Pages.Models
         }
 
         public int getRushCost(int sizeDesk, string rushDays)
-        {
+        {   
+            
             switch (rushDays)
             {
                 case "3 Days":
@@ -126,22 +127,12 @@ namespace MegaDeskRazorPages.Pages.Models
             this.rushDays = rush;
         }
 
-        public void setQuoteDate()
-        {
-            this.quoteDate = (string)desk.GetDateTime();
-        }
-
         public int getTotalCost()
         {
             this.totalCost = this.sizeCost + Desk.BASE_DESK_PRICE + this.drawersCost + this.materialCost + this.rushCost;
             return this.totalCost;
         }
 
-
-        public string getQuoteDate()
-        {
-            return quoteDate;
-        }
         // Create a GetRushOrder method within the DeskQuote class to handle the population of a member variable that holds a two dimension array that encases the logic in a try catch block
         // Read in the rush order price list from this file: rushOrderPrices.txt
         public void GetRushOrder()

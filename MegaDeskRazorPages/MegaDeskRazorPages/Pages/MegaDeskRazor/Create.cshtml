@@ -54,9 +54,7 @@
                 </select>
                 <span asp-validation-for="MegaDesk.RushDays" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MegaDesk.QuoteDate" class="control-label"></label>
-                <input asp-for="MegaDesk.QuoteDate" class="form-control" />
+            <div class="form-group" asp-for="MegaDesk.QuoteDate">
                 <span asp-validation-for="MegaDesk.QuoteDate" class="text-danger"></span>
             </div>
             <div class="form-group">

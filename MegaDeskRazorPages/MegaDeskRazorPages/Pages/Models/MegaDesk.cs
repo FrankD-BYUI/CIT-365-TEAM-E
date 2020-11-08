@@ -37,7 +37,7 @@ namespace MegaDeskRazorPages.Pages.Models
         [Display(Name = "Size")]
         public int SizeDesk
         {
-            get => size; set { size = WidthDesk * DepthDesk; }
+            get {return WidthDesk * DepthDesk; }
         }
 
         [Required]
@@ -55,12 +55,19 @@ namespace MegaDeskRazorPages.Pages.Models
         [Display(Name = "Rush Days")]
         public string RushDays { get; set; }
 
+        private DateTime _date;
+
         [Required]
         [Display(Name = "Quote Date")]
         [DataType(DataType.Date)]
-        public DateTime QuoteDate { get; set; }
-
-        [Display(Name = "Total Cost")]
+        public DateTime QuoteDate {get {
+         return _date;
+        }
+        set {
+         _date = DateTime.Now;
+        }
+        }
+[Display(Name = "Total Cost")]
 
         public int Calc_Total_Cost()
         {

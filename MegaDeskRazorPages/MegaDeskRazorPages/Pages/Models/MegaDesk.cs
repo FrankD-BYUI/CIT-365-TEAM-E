@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MegaDeskRazorPages.Pages.Models;
 
 namespace MegaDeskRazorPages.Pages.Models
 {
@@ -60,7 +61,29 @@ namespace MegaDeskRazorPages.Pages.Models
         public DateTime QuoteDate { get; set; }
 
         [Display(Name = "Total Cost")]
-        public int TotalCost { get; set; }
+
+        public int Calc_Total_Cost()
+        {
+            int sizeCost, basePrice, numDrawers, matCost, shippingCos;
+            DeskQuote MyDeskQuote = new DeskQuote();
+            sizeCost = MyDeskQuote.getSizeCost(size);
+            basePrice = Desk.BASE_DESK_PRICE;
+            numDrawers = MyDeskQuote.getDrawersCost(Drawers);
+            Console.WriteLine(sizeCost);
+            matCost = MyDeskQuote.getCostMaterial(Material);
+            shippingCos = MyDeskQuote.getRushCost(size, RushDays);
+            return sizeCost + basePrice + numDrawers + matCost + shippingCos;
+        }
+
+        public int TotalCost 
+        { 
+            get => Calc_Total_Cost();
+            set
+            {
+                Calc_Total_Cost();
+            } 
+        }
+
 
     }
 }

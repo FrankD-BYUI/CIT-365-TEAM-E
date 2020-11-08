@@ -57,9 +57,9 @@ namespace MegaDeskRazorPages.Pages.Models
             return this.sizeCost;
         }
 
-        public int getDrawersCost(string myNumberOfDrawers)
+        public int getDrawersCost(int myNumberOfDrawers)
         {
-            this.drawersCost = int.Parse(myNumberOfDrawers) * Desk.DRAWER_PRICE;
+            this.drawersCost = myNumberOfDrawers * Desk.DRAWER_PRICE;
             return this.drawersCost;
         }
 
@@ -75,29 +75,29 @@ namespace MegaDeskRazorPages.Pages.Models
             {
                 case "3 Days":
                     if (sizeDesk < 1000)
-                        this.rushCost = int.Parse(this.priceRush[0, 0]);
+                        this.rushCost = 60;
                     if (sizeDesk >= 1000 && sizeDesk <= 2000)
-                        this.rushCost = int.Parse(this.priceRush[0, 1]);
+                        this.rushCost = 70;
                     if (sizeDesk > 2000)
-                        this.rushCost = int.Parse(this.priceRush[0, 2]);
+                        this.rushCost = 80;
                     break;
 
                 case "5 Days":
                     if (sizeDesk < 1000)
-                        this.rushCost = int.Parse(this.priceRush[1, 0]);
+                        this.rushCost = 40;
                     if (sizeDesk >= 1000 && sizeDesk <= 2000)
-                        this.rushCost = int.Parse(this.priceRush[1, 1]);
+                        this.rushCost = 50;
                     if (sizeDesk > 2000)
-                        this.rushCost = int.Parse(this.priceRush[1, 2]);
+                        this.rushCost = 60;
                     break;
 
                 case "7 Days":
                     if (sizeDesk < 1000)
-                        this.rushCost = int.Parse(this.priceRush[2, 0]);
+                        this.rushCost = 30;
                     if (sizeDesk >= 1000 && sizeDesk <= 2000)
-                        this.rushCost = int.Parse(this.priceRush[2, 1]);
+                        this.rushCost = 35;
                     if (sizeDesk > 2000)
-                        this.rushCost = int.Parse(this.priceRush[2, 2]);
+                        this.rushCost = 40;
                     break;
                 default:
                     this.rushCost = 0;
@@ -137,48 +137,9 @@ namespace MegaDeskRazorPages.Pages.Models
             return this.totalCost;
         }
 
-
         public string getQuoteDate()
         {
             return quoteDate;
-        }
-        // Create a GetRushOrder method within the DeskQuote class to handle the population of a member variable that holds a two dimension array that encases the logic in a try catch block
-        // Read in the rush order price list from this file: rushOrderPrices.txt
-        public void GetRushOrder()
-        {
-            try
-            {
-                //Use these values from the file versus using 'magically' embedded values in the rush order quote amount logic within your DeskQuote class.
-                string startupPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
-
-                // read the values into a single dimension array and then use nested loops to populate a two dimensional array with three rows and three columns.
-                string[] lines = File.ReadAllLines(startupPath + @"\MegaDesk 1.0\MegaDesk 1.0\DataBase\rushOrderPrices.txt").ToArray();
-
-                for (int x = 0; x < lines.Length; x++)
-                {
-                    for (int y = 0; y < 3; y++)
-                    {
-                        this.priceRush[0, y] = lines[x];
-                        x++;
-                    }
-
-                    for (int y = 0; y < 3; y++)
-                    {
-                        this.priceRush[1, y] = lines[x];
-                        x++;
-                    }
-
-                    for (int y = 0; y < 3; y++)
-                    {
-                        this.priceRush[2, y] = lines[x];
-                        x++;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                //MessageBox.Show("An error happened:" + e.Message);
-            }
         }
 
     }

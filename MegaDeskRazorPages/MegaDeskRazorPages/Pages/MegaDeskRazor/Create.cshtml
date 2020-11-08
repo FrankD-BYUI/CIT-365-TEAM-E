@@ -30,7 +30,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="MegaDesk.Material" class="control-label"></label>
-                <input asp-for="MegaDesk.Material" class="form-control" />
+                <select asp-for="MegaDesk.Material" class="form-control">
+                    <option value="Oak">Oak</option>
+                    <option value="Laminate">Laminate</option>
+                    <option value="Pine">Pine</option>
+                    <option value="Rosewood">Rosewood</option>
+                    <option value="Veneer">Veneer</option>
+                </select>
                 <span asp-validation-for="MegaDesk.Material" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -40,7 +46,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="MegaDesk.RushDays" class="control-label"></label>
-                <input asp-for="MegaDesk.RushDays" class="form-control" />
+                <select asp-for="MegaDesk.RushDays" class="form-control">
+                    <option value="standard">Standard (14 days)</option>
+                    <option value="3 Days">3 Days</option>
+                    <option value="5 Days">5 Days</option>
+                    <option value="7 Days">7 Days</option>
+                </select>
                 <span asp-validation-for="MegaDesk.RushDays" class="text-danger"></span>
             </div>
             <div class="form-group">
